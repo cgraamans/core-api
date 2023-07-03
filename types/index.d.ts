@@ -1,4 +1,3 @@
-import {databaseModel} from "../src/models";
 import {Sequelize, Model, InferAttributes, InferCreationAttributes,CreationOptional,DataTypes,ModelStatic,HasManyGetAssociationsMixin,HasManySetAssociationsMixin} from "sequelize";
 
 export namespace App {
