@@ -1,7 +1,6 @@
 import {databaseModel} from "../src/models";
 import {Sequelize, Model, InferAttributes, InferCreationAttributes,CreationOptional,DataTypes,ModelStatic,HasManyGetAssociationsMixin,HasManySetAssociationsMixin} from "sequelize";
 
-declare module 'chai-http';
 export namespace App {
 
     export interface Role extends Model<InferAttributes<Role>, InferCreationAttributes<Role>> {
@@ -15,7 +14,7 @@ export namespace App {
         email:string;
         password:string;
         getRoles?:HasManyGetAssociationsMixin<Role>;
-        setRoles?:HasManySetAssociationsMixin<Role, number>;
+        setRoles:HasManySetAssociationsMixin<Role, number>;
       } 
 
     export interface databaseModel {

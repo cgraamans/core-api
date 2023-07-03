@@ -26,7 +26,7 @@ export const signup = async (req:Request, res:Response) => {
 export const signin = async (req:Request, res:Response) => {
 
   if(!req.body.username || !req.body.password) {
-    res.status(401).send({message: "You must fill out the complete form."})
+    res.status(401).send({error: "You must fill out the complete form."})
   }
 
   const user = await databaseModel.user.findOne({
@@ -57,7 +57,7 @@ export const signin = async (req:Request, res:Response) => {
   const authorities:string[] = [];
 
   const roles = await user.getRoles();
-  if(!roles || roles.length < 1) return res.status(500).send({ message: "Error retrieving roles." });
+  if(!roles || roles.length < 1) return res.status(500).send({ error: "Error retrieving roles" });
 
   for (let i = 0; i < roles.length; i++) {
     authorities.push("ROLE_" + roles[i].name.toUpperCase());
@@ -74,12 +74,6 @@ export const signin = async (req:Request, res:Response) => {
 };
 
 export const isUser = async (req:Request, res:Response) => {
-
-  // const where 
-
-  // if(req.body.username) {
-    
-  // }
 
   const user = await databaseModel.user.findOne({
     where: {
