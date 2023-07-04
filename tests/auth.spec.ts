@@ -246,6 +246,45 @@ describe('AUTH SignIn - Fail', () => {
   
 });
 
+describe('AUTH SignIn - Success', () => {
+
+    const name = Math.random().toString();
+    const email = Math.random().toString()+"@gmail.com";
+    const password = Math.random().toString();
+
+    it('should have status 200 and return user object', ()=>{
+  
+        chai.request(`http://localhost:${serverConfig.port}`)
+        .post(`/${serverConfig.apiVersion}/auth/signup/`)
+        .send({
+            username:name,
+            password:password,
+            email:email
+        })
+        .then(function () {
+  
+             return chai.request(`http://localhost:${serverConfig.port}`)
+                .post(`/${serverConfig.apiVersion}/auth/signin/`)
+                .send({
+                    username:name,
+                    password:password
+                })
+                .then(function (res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    expect(res.body).to.have.all.keys(["id","username","email","roles","accessToken"]);
+                })
+                .catch(function (err) {
+                    throw err;
+                });
+        })
+        .catch(function (err) {
+            throw err;
+        });
+    });
+  
+});
+
 // describe('AUTH SignIn - Success', () => {
 
 //     const name = Math.random().toString();
