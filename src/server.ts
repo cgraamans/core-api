@@ -5,6 +5,7 @@ import {databaseModel} from './models';
 import { serverConfig } from './config/server.config';
 import authRoute from './routes/auth.routes';
 import userRoute from './routes/user.routes';
+import testRoute from './routes/test.routes';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/"+serverConfig.apiVersion+'/auth/',authRoute);
 app.use("/"+serverConfig.apiVersion+'/user/',userRoute);
+app.use("/"+serverConfig.apiVersion+'/test/',testRoute);
 
 // simple route
 app.get("/", (req, res) => {
