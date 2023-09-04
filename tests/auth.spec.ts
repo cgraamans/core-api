@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import chaiJson from 'chai-json';
 import { serverConfig } from '../src/config/server.config';
 import 'mocha';
 
@@ -272,7 +271,8 @@ describe('AUTH SignIn - Success', () => {
                 .then(function (res) {
                     expect(res).to.have.status(200);
                     expect(res).to.be.json;
-                    expect(res.body).to.have.all.keys(["id","username","email","roles","accessToken"]);
+                    expect(res.body).to.have.all.keys(["username","roles","accessToken"]);
+                    expect(res.body.name).to.be.string(name);
                 })
                 .catch(function (err) {
                     throw err;
@@ -284,29 +284,3 @@ describe('AUTH SignIn - Success', () => {
     });
   
 });
-
-// describe('AUTH SignIn - Success', () => {
-
-//     const name = Math.random().toString();
-  
-//     it('should have status 200 and message false', ()=>{
-  
-//       const path = `/${serverConfig.apiVersion}/auth/isUser/`;
-  
-//       chai.request(`http://localhost:${serverConfig.port}`)
-//         .post(path)
-//         .send({
-//             username:name,
-//         })
-//         .then(function (res) {
-//             expect(res).to.have.status(200);
-//             expect(res).to.be.json;
-//             expect(res.body).to.eql({message: false});
-//         })
-//         .catch(function (err) {
-//             throw err;
-//         });
-  
-//     });
-  
-// });

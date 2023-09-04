@@ -64,9 +64,7 @@ export const signin = async (req:Request, res:Response) => {
   }
   
   return res.status(200).send({
-    id: user.id,
     username: user.username,
-    email: user.email,
     roles: authorities,
     accessToken: token
   });

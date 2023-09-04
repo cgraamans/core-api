@@ -15,12 +15,3 @@ describe('API ping request', () => {
       })
   })
 });
-
-// describe('API version ping request', () => {
-//   it('should return response on call', () => {
-//     return chai.request("http://localhost:3000/v1.0").get('/')
-//       .then(res => {
-//         expect(res).to.have.status(200);
-//       })
-//   })
-// });

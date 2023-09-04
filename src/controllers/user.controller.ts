@@ -1,8 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 
   // get profile
-export const allAccess = (req:Request, res:Response) => {
-  res.status(200).send("Public Content.");
+export const UserProfile = (req:Request, res:Response) => {
+
+  console.log("USERPROFILE");
+  // console.log();
+
+
+  res.status(200).send("User Profile");
 };
 
   // set profile

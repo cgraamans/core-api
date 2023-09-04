@@ -1,6 +1,6 @@
 import { Auth } from "../middleware/auth";
 import { Request, Response, NextFunction } from 'express';
-import { userBoard, moderatorBoard, adminBoard, allAccess } from "../controllers/user.controller";
+import { userBoard, moderatorBoard, adminBoard, UserProfile } from "../controllers/user.controller";
 import express from "express";
 
 const router = express.Router();
@@ -13,17 +13,17 @@ router.use(function(req:Request, res:Response, next:NextFunction) {
     next();
   });
 
-router.get("/all", allAccess);
+router.get("", UserProfile);
 
-router.get(
-    "/user",
+router.post(
+    "/email",
     [Auth.verifyToken],
     userBoard
   );
 
-router.get(
-    "/mod",
-    [Auth.verifyToken, Auth.isModerator],
+router.post(
+    "/password",
+    [Auth.verifyToken],
     moderatorBoard
   );
 
