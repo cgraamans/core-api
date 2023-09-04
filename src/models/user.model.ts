@@ -9,13 +9,29 @@ export const userModel = (sequelize:Sequelize) => {
       primaryKey: true
     },
     username: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull:false
     },
     email: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT,
+      allowNull:false
     },
     password: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    private: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false,
+      allowNull:false
+    },
+    nsfw: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false,
+      allowNull:false
+    },
+    profile: {
+      type: DataTypes.TEXT
     }
   });
 

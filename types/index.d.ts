@@ -12,6 +12,9 @@ export namespace App {
         username: string;
         email:string;
         password:string;
+        private:boolean;
+        nsfw:boolean;
+        profile:string;
         getRoles?:HasManyGetAssociationsMixin<Role>;
         setRoles:HasManySetAssociationsMixin<Role, number>;
       } 

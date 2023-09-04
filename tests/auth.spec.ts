@@ -186,9 +186,8 @@ describe('AUTH isUser - True', () => {
             throw err;
         });
 
-  
     });
-  
+
 });
 
 describe('AUTH isUser - False', () => {

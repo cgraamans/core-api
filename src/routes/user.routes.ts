@@ -1,6 +1,6 @@
 import { Auth } from "../middleware/auth";
 import { Request, Response, NextFunction } from 'express';
-import { userBoard, moderatorBoard, adminBoard, UserProfile } from "../controllers/user.controller";
+import { setProfile, setPassword, setEmail, getUser } from "../controllers/user.controller";
 import express from "express";
 
 const router = express.Router();
@@ -13,24 +13,28 @@ router.use(function(req:Request, res:Response, next:NextFunction) {
     next();
   });
 
-router.get("", UserProfile);
-
-router.post(
-    "/email",
-    [Auth.verifyToken],
-    userBoard
-  );
-
-router.post(
-    "/password",
-    [Auth.verifyToken],
-    moderatorBoard
-  );
-
 router.get(
-    "/admin",
-    [Auth.verifyToken, Auth.isAdmin],
-    adminBoard
-  );
+  "",
+  [Auth.verifyToken],
+  getUser
+);
+
+router.post(
+  "/email",
+  [Auth.verifyToken],
+  setEmail
+);
+
+router.post(
+  "/password",
+  [Auth.verifyToken],
+  setPassword
+);
+
+router.post(
+  "/profile",
+  [Auth.verifyToken],
+  setProfile
+);
 
 export default router;
